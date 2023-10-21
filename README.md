@@ -12,7 +12,7 @@ If you don't have AutoHotkey installed download the compiled exe file.
 
 # Youtube video
 
-[![IMAGE ALT TEXT HERE](https://i9.ytimg.com/vi_webp/xmuSEnIj0jA/mqdefault.webp?v=6533d445&sqp=CLSwz6kG&rs=AOn4CLCHSkt1O6OUdFgfiw6rZ54bckTVcQ)](https://www.youtube.com/watch?v=uZNI1G8OB9M)
+[![IMAGE ALT TEXT HERE](https://i9.ytimg.com/vi_webp/xmuSEnIj0jA/mqdefault.webp?v=6533d445&sqp=CLSwz6kG&rs=AOn4CLCHSkt1O6OUdFgfiw6rZ54bckTVcQ)](https://www.youtube.com/watch?v=xmuSEnIj0jA)
 
 # Credits
 
