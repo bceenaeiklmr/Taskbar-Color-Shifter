@@ -9,6 +9,7 @@ If you don't have AutoHotkey installed download the compiled exe file.
 
 * ahk file  [TaskBar-Color-Shifter.ahk](https://github.com/bceenaeiklmr/Taskbar-Color-Shifter/blob/main/TaskBar_ColorShift.ahk)
 * exe file: [TaskBar-Color-Shifter.exe](https://github.com/bceenaeiklmr/Taskbar-Color-Shifter/blob/main/TaskBar_ColorShift.exe) (x64)
+* exe file: [TaskBar-Color-Shifter.zip](https://github.com/bceenaeiklmr/Taskbar-Color-Shifter/blob/main/TaskBar_ColorShift.zip) (x64)
 
 # Youtube video
 
