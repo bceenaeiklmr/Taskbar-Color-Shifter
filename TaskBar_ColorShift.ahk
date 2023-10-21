@@ -3,18 +3,15 @@
 #Warn
 ListLines(0)
 
-; default value is 20 ms, one transition takes 5,1 s
-TimerPeriod := 20
-; 1 solid color w/o transparency (The colors are bright in this mode, it's distracting to the eyes)
-; 2 transparent color
-ColorMode := 2
-; only required for transparent color
-Alpha := 50
+; default value is 30 ms, one shift takes at least 30 ms on a high-end system
+TimerPeriod := 30
+; the alpha value of the taskbar (using 0 or 255 is not recommended, the colors are bright in this mode, and it's distracting to the eyes)
+TaskBarAlpha := 100
+; start the timer
+SetTimer(TaskBar_RandColorShift.Bind(TaskBarAlpha), TimerPeriod)
 
-; panic button (unfortunately, there is no restore function yet)
+; unfortunately, there is no restore function yet
 ^Escape::ExitApp
-
-SetTimer(TaskBar_RandColorShift.Bind(Alpha), TimerPeriod)
 
 /**
  * Shifts the color of the Windows taskbar using random colors.
@@ -22,7 +19,7 @@ SetTimer(TaskBar_RandColorShift.Bind(Alpha), TimerPeriod)
  * @param {Integer} Alpha - The alpha value for transparent mode.
  * @param {Integer} Range - The value where the color shift ends. This determines how long the color transition takes.
  */
-TaskBar_RandColorShift(Alpha := 50, Range := 255, *) {
+TaskBar_RandColorShift(Alpha := 255, Range := 255, *) {
 
     static c1 := {R:0, G:0, B:0},
            c2 := {R:0, G:0, B:255},
@@ -33,7 +30,7 @@ TaskBar_RandColorShift(Alpha := 50, Range := 255, *) {
     R := c1.R + Ceil(p * (c2.R - c1.R)),
     G := c1.G + Ceil(p * (c2.G - c1.G)),
     B := c1.B + Ceil(p * (c2.B - c1.B)),
-    color := Format("{:#02x}{:02x}{:02x}{:02x}", Alpha, R, G, B)
+    Color := Format("{:#02x}{:02x}{:02x}{:02x}", Alpha, R, G, B)
 
     ; if it reaches the color2 then swap the colors and set a new color2
     if (i=range) {
@@ -42,11 +39,12 @@ TaskBar_RandColorShift(Alpha := 50, Range := 255, *) {
         i := 0
     }
     ; apply the new color on the taskbar
-    TaskBar_SetAttr(ColorMode, color)
+    ColorMode := !Alpha || Alpha = 255 ? 1 : 2
+    TaskBar_SetAttr(ColorMode, Color)
 }
 
 /**
- * The following function is a fork (update to v2) of jNizM's Make the windows 10 taskbar translucent (blur) repository.
+ * The following function is a fork (update to v2) of jNizM's Make the Windows 10 taskbar translucent (blur) repository.
  * https://github.com/jNizM/AHK_TaskBar_SetAttr/tree/master
  * https://autohotkey.com/boards/viewtopic.php?f=6&t=26752
  * 
