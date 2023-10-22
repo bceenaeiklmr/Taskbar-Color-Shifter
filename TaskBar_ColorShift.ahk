@@ -8,10 +8,11 @@ TimerPeriod := 30
 ; the alpha value of the taskbar (using 0 or 255 is not recommended, the colors are bright in this mode, and it's distracting to the eyes)
 TaskBarAlpha := 100
 ; start the timer
-SetTimer(TaskBar_RandColorShift.Bind(TaskBarAlpha), TimerPeriod)
+SetTimer(TaskBar_RandColorShift.Bind(TaskBarAlpha), TimerPeriod) ; <-- random colors
+;SetTimer(TaskBar_ColorShift.Bind(0x000000, 0xFFFFFF, TaskBarAlpha), TimerPeriod) ; <-- only two colors
 
 ; unfortunately, there is no restore function yet
-^Escape::ExitApp
+;^Escape::ExitApp
 
 /**
  * Shifts the color of the Windows taskbar using random colors.
@@ -38,7 +39,42 @@ TaskBar_RandColorShift(Alpha := 255, Range := 255, *) {
         c2 := {R : Random(0,255), G : Random(0,255), B : Random(0,255)},
         i := 0
     }
-    ; apply the new color on the taskbar
+    ; apply the new color setting on the taskbar
+    ColorMode := !Alpha || Alpha = 255 ? 1 : 2
+    TaskBar_SetAttr(ColorMode, Color)
+}
+
+/**
+ * Shifts the color of the Windows taskbar using user-defined colors.
+ *
+ * @param {Hex} Color1 - 0x000000
+ * @param {Hex} Color2 - 0x000000
+ * @param {Integer} Alpha - The alpha value for transparent mode.
+ * @param {Integer} Range - The value where the color shift ends. This determines how long the color transition takes.
+ */
+TaskBar_ColorShift(Color1 := 0x000000, Color2 := 0xFFFFFF, Alpha := 255, Range := 255, *) {
+
+    static i := 0, reverse := 1
+
+    c1 := { R : (0xff0000 & Color1) >> 16,
+	        G : (0x00ff00 & Color1) >> 8,
+	        B :  0x0000ff & Color1 }
+
+    c2 := { R : (0xff0000 & Color2) >> 16,
+            G : (0x00ff00 & Color2) >> 8,
+            B :  0x0000ff & Color2 }   
+
+    ; linear interpolation between the two specified colors
+    p := (i += 1 * reverse) / Range, ; percent
+    R := c1.R + Ceil(p * (c2.R - c1.R)),
+    G := c1.G + Ceil(p * (c2.G - c1.G)),
+    B := c1.B + Ceil(p * (c2.B - c1.B)),
+    Color := Format("{:#02x}{:02x}{:02x}{:02x}", Alpha, R, G, B)
+
+    ; swap the colors and set a new color2
+    if i=range || !i 
+        reverse := reverse * (-1)
+    ; apply the new color setting on the taskbar
     ColorMode := !Alpha || Alpha = 255 ? 1 : 2
     TaskBar_SetAttr(ColorMode, Color)
 }
