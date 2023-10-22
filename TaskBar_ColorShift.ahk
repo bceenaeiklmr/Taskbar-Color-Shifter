@@ -71,7 +71,7 @@ TaskBar_ColorShift(Color1 := 0x000000, Color2 := 0xFFFFFF, Alpha := 255, Range :
     B := c1.B + Ceil(p * (c2.B - c1.B)),
     Color := Format("{:#02x}{:02x}{:02x}{:02x}", Alpha, R, G, B)
 
-    ; swap the colors and set a new color2
+    ; change direction
     if i=range || !i 
         reverse := reverse * (-1)
     ; apply the new color setting on the taskbar
