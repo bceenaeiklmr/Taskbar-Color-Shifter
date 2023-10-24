@@ -13,7 +13,7 @@ If you don't have AutoHotkey installed download the compiled exe file.
 
 # Youtube video
 
-[![Youtube-Thumbnail-Taskbar-Color-Shifter](https://i9.ytimg.com/vi_webp/xmuSEnIj0jA/mqdefault.webp?v=6533d445&sqp=CJSb1KkG&rs=AOn4CLCvyt-DYOvaxx-11a9pXy4epfssNA)](https://www.youtube.com/watch?v=xmuSEnIj0jA)
+[<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/105103590/277706362-db0023be-f707-4101-ba1b-c88071901cc2.png" alt="Windows Taskbar Color Shifter downloadable script" width="640">](https://www.youtube.com/watch?v=xmuSEnIj0jA)
 
 # Credits
 
